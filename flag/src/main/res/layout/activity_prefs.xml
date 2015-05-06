@@ -1,38 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView style="@style/Fit">
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" style="@style/FitWrap.StdLR.Ver" >
+    <LinearLayout android:id="@+id/root" xmlns:android="http://schemas.android.com/apk/res/android" style="@style/FitWrap.StdLR.Ver" >
 
         <TextView style="@style/FitWrap" android:text="Training first table" android:layout_marginTop="@dimen/std_margin" />
         <LinearLayout style="@style/FitWrap.Hor">
-            <EditText android:id="@+id/t1n" style="@style/StretchWrap.X1" android:hint="rows"/>
+            <EditText android:id="@+id/t1n" style="@style/StretchWrap.X1.Num" android:hint="rows"/>
             <TextView style="@style/Wrap" android:text="x" />
-            <EditText android:id="@+id/t1m" style="@style/StretchWrap.X1" android:hint="columns"/>
+            <EditText android:id="@+id/t1m" style="@style/StretchWrap.X1.Num" android:hint="columns"/>
         </LinearLayout>
 
 
         <TextView style="@style/FitWrap" android:text="Training second table" android:layout_marginTop="@dimen/std_margin" />
         <LinearLayout style="@style/FitWrap.Hor">
-            <EditText android:id="@+id/t2n" style="@style/StretchWrap.X1" android:hint="rows"/>
+            <EditText android:id="@+id/t2n" style="@style/StretchWrap.X1.Num" android:hint="rows"/>
             <TextView style="@style/Wrap" android:text="x" />
-            <EditText android:id="@+id/t2m" style="@style/StretchWrap.X1" android:hint="columns"/>
+            <EditText android:id="@+id/t2m" style="@style/StretchWrap.X1.Num" android:hint="columns"/>
         </LinearLayout>
 
         <TextView style="@style/FitWrap" android:text="Experiment first table" android:layout_marginTop="@dimen/std_margin" />
         <LinearLayout style="@style/FitWrap.Hor">
-            <EditText android:id="@+id/e1n" style="@style/StretchWrap.X1" android:hint="rows"/>
+            <EditText android:id="@+id/e1n" style="@style/StretchWrap.X1.Num" android:hint="rows"/>
             <TextView style="@style/Wrap" android:text="x" />
-            <EditText android:id="@+id/e1m" style="@style/StretchWrap.X1" android:hint="columns"/>
+            <EditText android:id="@+id/e1m" style="@style/StretchWrap.X1.Num" android:hint="columns"/>
         </LinearLayout>
 
         <TextView style="@style/FitWrap" android:text="Experiment second table" android:layout_marginTop="@dimen/std_margin" />
         <LinearLayout style="@style/FitWrap.Hor">
-            <EditText android:id="@+id/e2n" style="@style/StretchWrap.X1" android:hint="rows"/>
+            <EditText android:id="@+id/e2n" style="@style/StretchWrap.X1.Num" android:hint="rows"/>
             <TextView style="@style/Wrap" android:text="x" />
-            <EditText android:id="@+id/e2m" style="@style/StretchWrap.X1" android:hint="columns"/>
+            <EditText android:id="@+id/e2m" style="@style/StretchWrap.X1.Num" android:hint="columns"/>
         </LinearLayout>
 
+        <TextView style="@style/FitWrap" android:text="Seconds for first table" android:layout_marginTop="@dimen/std_margin" />
         <EditText android:id="@+id/secs1" style="@style/FitWrap" android:hint="Seconds for first table"/>
+
+        <TextView style="@style/FitWrap" android:text="Seconds for second table" android:layout_marginTop="@dimen/std_margin" />
         <EditText android:id="@+id/secs2" style="@style/FitWrap" android:hint="Seconds for second table"/>
+
+        <TextView style="@style/FitWrap" android:text="Amount of images from first table aren't sent to second" android:layout_marginTop="@dimen/std_margin" />
+        <EditText android:id="@+id/list5Imgs" style="@style/FitWrap" android:hint="Amount of images from first table aren't sent to second"/>
 
     </LinearLayout>
 </ScrollView>

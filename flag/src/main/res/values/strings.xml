@@ -4,6 +4,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
+    <string name="validate_more_than_0">Value should be more than 0</string>
+
     <string-array name="menu">
         <item>Обучение</item>
         <item>Эксперимент</item>
