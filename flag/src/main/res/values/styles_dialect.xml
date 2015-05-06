@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+        It's a file for shortening XML layout files
+        There're various combinations of most often used patterns in layouts
+    -->
+
+    <style name="Fit">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+    <style name="Wrap">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="Space">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="StretchWrap">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="StretchFit">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="FitStretch">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+    </style>
+
+    <style name="StretchFit.X1"><item name="android:layout_weight"> 1 </item> </style>
+    <style name="StretchFit.X2"><item name="android:layout_weight"> 2 </item> </style>
+    <style name="StretchWrap.X1"><item name="android:layout_weight"> 1 </item> </style>
+    <style name="StretchWrap.X2"><item name="android:layout_weight"> 2 </item> </style>
+
+    <style name="FitStretch.X1"><item name="android:layout_weight"> 1 </item> </style>
+    <style name="FitStretch.X2"><item name="android:layout_weight"> 2 </item> </style>
+
+    <style name="FitWrap">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="Fit.Std" >
+        <item name="android:layout_marginLeft">@dimen/std_margin</item>
+        <item name="android:layout_marginTop">@dimen/std_margin</item>
+        <item name="android:layout_marginRight">@dimen/std_margin</item>
+        <item name="android:layout_marginBottom">@dimen/std_margin</item>
+    </style>
+    <style name="Fit.Ver"> <item name="android:orientation">vertical</item>            </style>
+    <style name="Fit.Hor"> <item name="android:orientation">horizontal</item>          </style>
+
+    <style name="Fit.Std.Ver">  <item name="android:orientation">vertical</item>            </style>
+    <style name="Fit.Std.Hor">  <item name="android:orientation">horizontal</item>          </style>
+
+    <style name="Wrap.Std">
+        <item name="android:layout_marginLeft">@dimen/std_margin</item>
+        <item name="android:layout_marginTop">@dimen/std_margin</item>
+        <item name="android:layout_marginRight">@dimen/std_margin</item>
+        <item name="android:layout_marginBottom">@dimen/std_margin</item>
+    </style>
+    <style name="Wrap.StdLR">
+        <item name="android:layout_marginLeft">@dimen/std_margin</item>
+        <item name="android:layout_marginRight">@dimen/std_margin</item>
+    </style>
+    <style name="Wrap.StdLR.Ver"> <item name="android:orientation">vertical</item>      </style>
+    <style name="Wrap.Ver"> <item name="android:orientation">vertical</item>            </style>
+    <style name="Wrap.Hor"> <item name="android:orientation">horizontal</item>          </style>
+
+    <style name="Wrap.Std.Ver"> <item name="android:orientation">vertical</item>        </style>
+    <style name="Wrap.Std.Hor"> <item name="android:orientation">horizontal</item>      </style>
+
+
+    <style name="FitWrap.Std" >     <item name="android:layout_margin">@dimen/std_margin</item> </style>
+    <style name="FitWrap.StdTB" >
+        <item name="android:layout_marginTop">@dimen/std_margin</item>
+        <item name="android:layout_marginBottom">@dimen/std_margin</item>
+    </style>
+    <style name="FitWrap.QuarterTB" >
+        <item name="android:layout_marginTop">@dimen/qr_margin</item>
+        <item name="android:layout_marginBottom">@dimen/qr_margin</item>
+    </style>
+
+    <style name="Fit.StdLR" >
+        <item name="android:layout_marginLeft">@dimen/std_margin</item>
+        <item name="android:layout_marginRight">@dimen/std_margin</item>
+    </style>
+
+    <style name="FitWrap.StdLR" >
+        <item name="android:layout_marginLeft">@dimen/std_margin</item>
+        <item name="android:layout_marginRight">@dimen/std_margin</item>
+    </style>
+    <style name="StretchWrap.X1.Ver">      <item name="android:orientation">vertical</item>        </style>
+    <style name="StretchWrap.X1.Hor">      <item name="android:orientation">horizontal</item>      </style>
+    <style name="StretchWrap.X2.Ver">      <item name="android:orientation">vertical</item>        </style>
+    <style name="StretchWrap.X2.Hor">      <item name="android:orientation">horizontal</item>      </style>
+
+    <style name="StretchFit.X1.Ver">      <item name="android:orientation">vertical</item>        </style>
+    <style name="StretchFit.X1.Hor">      <item name="android:orientation">horizontal</item>      </style>
+    <style name="StretchFit.X2.Ver">      <item name="android:orientation">vertical</item>        </style>
+    <style name="StretchFit.X2.Hor">      <item name="android:orientation">horizontal</item>      </style>
+    <style name="FitWrap.Ver">      <item name="android:orientation">vertical</item>        </style>
+    <style name="FitWrap.Hor">      <item name="android:orientation">horizontal</item>      </style>
+    <style name="FitWrap.Std.Ver">  <item name="android:orientation">vertical</item>        </style>
+    <style name="FitWrap.Std.Hor">  <item name="android:orientation">horizontal</item>      </style>
+
+    <style name="FitWrap.StdLR.Ver">  <item name="android:orientation">vertical</item>        </style>
+    <style name="FitWrap.StdLR.Hor">  <item name="android:orientation">horizontal</item>      </style>
+
+    <style name="FitWrap.QuarterTB.Ver">  <item name="android:orientation">vertical</item>        </style>
+    <style name="FitWrap.QuarterTB.Hor">  <item name="android:orientation">horizontal</item>      </style>
+    <style name="FitWrap.StdTB.Ver">  <item name="android:orientation">vertical</item>        </style>
+    <style name="FitWrap.StdTB.Hor">  <item name="android:orientation">horizontal</item>      </style>
+
+    <style name="Fit.LRPadStd">
+        <item name="android:paddingLeft">@dimen/std_margin</item>
+        <item name="android:paddingRight">@dimen/std_margin</item>
+    </style>
+
+    <style name="FitWrap.LRPadStd">
+        <item name="android:paddingLeft">@dimen/std_margin</item>
+        <item name="android:paddingRight">@dimen/std_margin</item>
+    </style>
+
+    <style name="FitWrap.TBPadStd">
+        <item name="android:paddingTop">@dimen/std_margin</item>
+        <item name="android:paddingBottom">@dimen/std_margin</item>
+    </style>
+
+    <style name="FitWrap.TBPadHalf">
+        <item name="android:paddingTop">@dimen/half_margin</item>
+        <item name="android:paddingBottom">@dimen/half_margin</item>
+    </style>
+
+    <style name="FitWrap.TBPadHalf.Ver"> <item name="android:orientation">vertical</item>    </style>
+    <style name="FitWrap.TBPadHalf.Hor"> <item name="android:orientation">horizontal</item>    </style>
+
+    <style name="FitWrap.LRPadStd.Ver"> <item name="android:orientation">vertical</item>    </style>
+    <style name="FitWrap.LRPadStd.Hor"> <item name="android:orientation">horizontal</item>    </style>
+
+    <style name="FitWrap.TBPadStd.Ver"> <item name="android:orientation">vertical</item>    </style>
+    <style name="FitWrap.TBPadStd.Hor"> <item name="android:orientation">horizontal</item>    </style>
+
+    <style name="Fit.LRPadStd.Ver"> <item name="android:orientation">vertical</item>        </style>
+
+    <style name="Fit.Viewport"> <item name="android:fillViewport">true</item> </style>
+    <style name="Fit.LRPadStd.Viewport"> <item name="android:fillViewport">true</item> </style>
+</resources>

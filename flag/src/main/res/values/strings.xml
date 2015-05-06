@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Flag</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string-array name="menu">
+        <item>Обучение</item>
+        <item>Эксперимент</item>
+        <item>Настройки</item>
+        <item>О программе</item>
+    </string-array>
+
+</resources>
