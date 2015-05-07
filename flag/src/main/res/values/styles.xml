@@ -10,4 +10,9 @@
         <item name="android:inputType">numberDecimal</item>
     </style>
 
+    <style name="FitWrap.Num">
+        <item name="android:singleLine">true</item>
+        <item name="android:inputType">numberDecimal</item>
+    </style>
+
 </resources>

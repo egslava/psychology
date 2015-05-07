@@ -4,29 +4,29 @@
 
         <TextView style="@style/FitWrap" android:text="Training first table" android:layout_marginTop="@dimen/std_margin" />
         <LinearLayout style="@style/FitWrap.Hor">
-            <EditText android:id="@+id/t1n" style="@style/StretchWrap.X1.Num" android:hint="rows"/>
+            <EditText android:id="@+id/t1n" style="@style/StretchWrap.X1.Num" android:hint="rows" android:gravity="right" />
             <TextView style="@style/Wrap" android:text="x" />
-            <EditText android:id="@+id/t1m" style="@style/StretchWrap.X1.Num" android:hint="columns"/>
+            <EditText android:id="@+id/t1m" style="@style/StretchWrap.X1.Num" android:hint="columns" />
         </LinearLayout>
 
 
         <TextView style="@style/FitWrap" android:text="Training second table" android:layout_marginTop="@dimen/std_margin" />
         <LinearLayout style="@style/FitWrap.Hor">
-            <EditText android:id="@+id/t2n" style="@style/StretchWrap.X1.Num" android:hint="rows"/>
+            <EditText android:id="@+id/t2n" style="@style/StretchWrap.X1.Num" android:hint="rows" android:gravity="right" />
             <TextView style="@style/Wrap" android:text="x" />
             <EditText android:id="@+id/t2m" style="@style/StretchWrap.X1.Num" android:hint="columns"/>
         </LinearLayout>
 
         <TextView style="@style/FitWrap" android:text="Experiment first table" android:layout_marginTop="@dimen/std_margin" />
         <LinearLayout style="@style/FitWrap.Hor">
-            <EditText android:id="@+id/e1n" style="@style/StretchWrap.X1.Num" android:hint="rows"/>
+            <EditText android:id="@+id/e1n" style="@style/StretchWrap.X1.Num" android:hint="rows" android:gravity="right" />
             <TextView style="@style/Wrap" android:text="x" />
             <EditText android:id="@+id/e1m" style="@style/StretchWrap.X1.Num" android:hint="columns"/>
         </LinearLayout>
 
         <TextView style="@style/FitWrap" android:text="Experiment second table" android:layout_marginTop="@dimen/std_margin" />
         <LinearLayout style="@style/FitWrap.Hor">
-            <EditText android:id="@+id/e2n" style="@style/StretchWrap.X1.Num" android:hint="rows"/>
+            <EditText android:id="@+id/e2n" style="@style/StretchWrap.X1.Num" android:hint="rows" android:gravity="right" />
             <TextView style="@style/Wrap" android:text="x" />
             <EditText android:id="@+id/e2m" style="@style/StretchWrap.X1.Num" android:hint="columns"/>
         </LinearLayout>
