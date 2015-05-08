@@ -63,9 +63,6 @@ public class AddNewUserActivity extends AccountAuthenticatorActivity{
             logins[i] = account.name;
             names[i] = manager.getUserData(account, "name");
         }
-        final ArrayAdapter<String>
-            loginsAutocompleteAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, android.R.id.text1, logins),
-            namesAutocompleteAdapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, android.R.id.text1, names);
 
         login.setAdapter( new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, android.R.id.text1, logins) );
         name.setAdapter( new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, android.R.id.text1, names) );
@@ -93,7 +90,7 @@ public class AddNewUserActivity extends AccountAuthenticatorActivity{
         userdata.putLong("birth", birthdate);
         userdata.putBoolean("sex", sex.isChecked() );
 
-        if ( ! manager.addAccountExplicitly(account, null, null) ){
+        if ( ! manager.addAccountExplicitly(account, null, userdata) ){
             dialog("Can not register new account");
             return;
         }
