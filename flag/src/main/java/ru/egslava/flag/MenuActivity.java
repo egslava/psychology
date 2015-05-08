@@ -1,5 +1,6 @@
 package ru.egslava.flag;
 
+import android.accounts.AccountManager;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.preference.PreferenceActivity;

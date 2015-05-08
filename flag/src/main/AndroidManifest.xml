@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ru.egslava.flag" >
 
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -13,7 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
+
+        <activity android:name=".auth.AddNewUserActivity_" />
+
+
         <service android:name=".auth.Service">
             <intent-filter>
                 <action android:name="android.accounts.AccountAuthenticator" />
@@ -25,11 +31,5 @@
         <activity android:name=".PrefsActivity_" />
 
     </application>
-
-    <intent-filter>
-        <action android:name="android.accounts.AccountAuthenticator" />
-    </intent-filter>
-    <meta-data android:name="android.accounts.AccountAuthenticator"
-        android:resource="@xml/authenticator" />
 
 </manifest>
