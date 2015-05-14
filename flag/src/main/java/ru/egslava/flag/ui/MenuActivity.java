@@ -1,4 +1,4 @@
-package ru.egslava.flag;
+package ru.egslava.flag.ui;
 
 import android.accounts.AccountManager;
 import android.app.ListActivity;
@@ -16,7 +16,11 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ItemClick;
 import org.androidannotations.annotations.OptionsMenu;
+import org.androidannotations.annotations.SystemService;
 import org.androidannotations.annotations.res.StringArrayRes;
+
+import ru.egslava.flag.ui.PrefsActivity_;
+import ru.egslava.flag.ui.userlist.UserListActivity_;
 
 @EActivity
 public class MenuActivity extends ListActivity {
@@ -24,12 +28,21 @@ public class MenuActivity extends ListActivity {
     @StringArrayRes             String[]                menu;
     public                      ArrayAdapter<String>    adapter;
 
+    @SystemService  AccountManager  accountManager;
+
     @AfterInject void init() {
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, menu);
         setListAdapter(adapter);
     }
 
     @ItemClick void list(int position) {
-        PrefsActivity_.intent(this).start();
+        switch (position) {
+            case 0:
+                UserListActivity_.intent(this).start();
+                break;
+            default:
+                PrefsActivity_.intent(this).start();
+                break;
+        }
     }
 }

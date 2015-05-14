@@ -7,9 +7,9 @@
     <string name="validate_more_than_0">Value should be more than 0</string>
 
     <string-array name="menu">
-        <item>Обучение</item>
-        <item>Эксперимент</item>
+        <item>Вход</item>
         <item>Настройки</item>
+        <item>Рекорды</item>
         <item>О программе</item>
     </string-array>
 

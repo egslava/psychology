@@ -1,4 +1,4 @@
-package ru.egslava.flag.views;
+package ru.egslava.flag.ui.views;
 
 /**
  * Created by egslava on 09/04/15.

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" style="@style/Fit.Std.Ver">
+
+    <TextView android:id="@+id/login" style="@style/FitWrap" android:text="egslava" />
+    <LinearLayout style="@style/FitWrap.Hor">
+        <TextView android:id="@+id/name" style="@style/Wrap" android:text="Viacheslav Egonrekov" />
+        <TextView android:id="@+id/ages" style="@style/Wrap" android:text="(23)" />
+    </LinearLayout>
+
+</LinearLayout>

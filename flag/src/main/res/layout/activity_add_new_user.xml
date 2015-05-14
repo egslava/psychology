@@ -3,7 +3,8 @@
 
     <LinearLayout style="@style/Fit.LRPadStd.Ver" android:gravity="center_vertical" >
 
-        <ru.egslava.flag.views.GenderView android:id="@+id/sex" style="@style/Wrap" android:textSize="64dp" android:layout_gravity="center" android:focusableInTouchMode="false" />
+        <ru.egslava.flag.ui.views.GenderView
+            android:id="@+id/sex" style="@style/Wrap" android:textSize="64dp" android:layout_gravity="center" android:focusableInTouchMode="false" />
         <AutoCompleteTextView android:id="@+id/login" style="@style/FitWrap" android:hint="Please, enter your nickname" />
         <AutoCompleteTextView android:id="@+id/name" style="@style/FitWrap" android:hint="Please, enter your name" />
         <EditText android:id="@+id/birth" style="@style/FitWrap" android:text="Tap to choose birthdate" android:editable="false" android:focusableInTouchMode="false"/>

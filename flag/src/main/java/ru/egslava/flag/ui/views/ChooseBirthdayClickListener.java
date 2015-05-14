@@ -1,4 +1,4 @@
-package ru.egslava.flag.views;
+package ru.egslava.flag.ui.views;
 
 import android.app.DatePickerDialog;
 import android.view.View;

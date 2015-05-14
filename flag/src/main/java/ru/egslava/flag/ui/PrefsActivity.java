@@ -1,4 +1,4 @@
-package ru.egslava.flag;
+package ru.egslava.flag.ui;
 
 import android.app.Activity;
 import android.widget.EditText;
@@ -10,6 +10,9 @@ import org.androidannotations.annotations.sharedpreferences.Pref;
 import org.androidannotations.api.sharedpreferences.IntPrefEditorField;
 import org.androidannotations.api.sharedpreferences.IntPrefField;
 
+import ru.egslava.flag.Prefs_;
+import ru.egslava.flag.R;
+
 /**
  * Created by egslava on 07/05/15.
  */
@@ -17,7 +20,7 @@ import org.androidannotations.api.sharedpreferences.IntPrefField;
 @EActivity(R.layout.activity_prefs)
 public class PrefsActivity extends Activity {
 
-    @Pref   Prefs_  prefs;
+    @Pref Prefs_ prefs;
 
     @ViewById   public EditText t1n, t1m, t2n, t2m, e1n, e1m, e2n, e2m, secs1, secs2, list5Imgs;
 

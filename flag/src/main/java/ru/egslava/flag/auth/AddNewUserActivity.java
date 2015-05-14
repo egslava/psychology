@@ -4,6 +4,8 @@ import android.accounts.Account;
 import android.accounts.AccountAuthenticatorActivity;
 import android.accounts.AccountAuthenticatorResponse;
 import android.accounts.AccountManager;
+import android.accounts.AccountManagerCallback;
+import android.accounts.AccountManagerFuture;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -20,8 +22,8 @@ import org.androidannotations.annotations.SystemService;
 import org.androidannotations.annotations.ViewById;
 
 import ru.egslava.flag.R;
-import ru.egslava.flag.views.ChooseBirthdayClickListener;
-import ru.egslava.flag.views.GenderView;
+import ru.egslava.flag.ui.views.ChooseBirthdayClickListener;
+import ru.egslava.flag.ui.views.GenderView;
 
 /**
  * Created by egslava on 08/05/15.
@@ -45,7 +47,7 @@ public class AddNewUserActivity extends AccountAuthenticatorActivity{
 
         birth.setOnClickListener(new ChooseBirthdayClickListener(0, (time, age) -> {
             birth.setText(String.valueOf(age));
-            birthdate = (long) age;
+            birthdate = time;
         }));
         Log.e("Account", "AddNewUserActivity");
 
@@ -85,21 +87,22 @@ public class AddNewUserActivity extends AccountAuthenticatorActivity{
         }
 
         final Account account = new Account(login, "ru.egslava.flag");
-        final Bundle userdata = new Bundle();
-        userdata.putString("name", name);
-        userdata.putLong("birth", birthdate);
-        userdata.putBoolean("sex", sex.isChecked() );
 
-        if ( ! manager.addAccountExplicitly(account, null, userdata) ){
+        // do not send data over third parameter. Just use setUserData (Android bug)
+        if ( ! manager.addAccountExplicitly(account, null, null) ){
             dialog("Can not register new account");
             return;
         }
+
+        manager.setUserData(account, "name",    name);
+        manager.setUserData(account, "birth",   String.valueOf(birthdate));
+        manager.setUserData(account, "sex",     String.valueOf(sex.isChecked()));
 
         final Bundle result = new Bundle();
         result.putString(AccountManager.KEY_ACCOUNT_NAME, login);
         result.putString(AccountManager.KEY_ACCOUNT_TYPE, "ru.egslava.flag");
 
-        setAccountAuthenticatorResult( result );
+        setAccountAuthenticatorResult(result);
         setResult(RESULT_OK);
         finish();
     }

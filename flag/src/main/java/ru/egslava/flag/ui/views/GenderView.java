@@ -1,4 +1,4 @@
-package ru.egslava.flag.views;
+package ru.egslava.flag.ui.views;
 
 import android.content.Context;
 import android.util.AttributeSet;

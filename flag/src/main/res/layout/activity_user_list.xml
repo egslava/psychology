@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Fit">
+
+    <ListView android:id="@android:id/list" style="@style/Fit" />
+    <net.i2p.android.ext.floatingactionbutton.AddFloatingActionButton android:id="@+id/add"
+        style="@style/Fit.Std" android:layout_gravity="bottom|right"/>
+
+</FrameLayout>
