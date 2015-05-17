@@ -1,6 +1,8 @@
 package ru.egslava.flag.ui.views;
 
 import android.content.Context;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.v7.internal.widget.AdapterViewCompat;
 import android.util.AttributeSet;
 import android.view.View;
@@ -68,5 +70,59 @@ public class FitGridLayout extends LinearLayout {
         }
 
         return result;
+    }
+
+    @Override protected Parcelable onSaveInstanceState() {
+
+        final Parcelable gridParcelable = super.onSaveInstanceState();
+        final SavedState savedState = new SavedState(gridParcelable);
+
+        Parcelable[] childrenParcelable = new Parcelable[flagViews.size()];
+        for (int i = 0; i < flagViews.size(); i ++){
+            final Parcelable parcelable = flagViews.get(i).onSaveInstanceState();
+            childrenParcelable[i] = parcelable;
+        }
+        savedState.childrenStates = childrenParcelable;
+        return savedState;
+    }
+
+    @Override protected void onRestoreInstanceState(Parcelable savedState) {
+        if ( ! (savedState instanceof SavedState) ){
+            super.onRestoreInstanceState(savedState);
+            return;
+        }
+
+        SavedState state = (SavedState) savedState;
+        super.onRestoreInstanceState(state.getSuperState());
+
+        for (int i = 0; i < flagViews.size(); i++ ){
+            flagViews.get(i).onRestoreInstanceState( state.childrenStates[i] );
+        }
+    }
+
+    class SavedState extends BaseSavedState {
+
+        Parcelable[] childrenStates;
+
+        public SavedState(Parcel source) {
+            super(source);
+            childrenStates = source.readParcelableArray( null );
+        }
+        public SavedState(Parcelable superState) { super(superState); }
+
+        @Override public void writeToParcel(Parcel dest, int flags) {
+            super.writeToParcel(dest, flags);
+            dest.writeParcelableArray( childrenStates, 0 );
+        }
+
+        public final Creator<SavedState> CREATOR = new Creator<SavedState>() {
+            @Override public SavedState createFromParcel(Parcel source) {
+                return new SavedState(source);
+            }
+
+            @Override public SavedState[] newArray(int size) {
+                return new SavedState[size];
+            }
+        };
     }
 }
