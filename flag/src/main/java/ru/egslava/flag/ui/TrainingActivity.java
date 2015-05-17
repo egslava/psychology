@@ -16,7 +16,6 @@ import org.androidannotations.annotations.sharedpreferences.Pref;
 
 import ru.egslava.flag.Prefs_;
 import ru.egslava.flag.R;
-import ru.egslava.flag.ui.adapters.ImageAdapter;
 import ru.egslava.flag.utils.Images;
 
 @EActivity(R.layout.activity_training)

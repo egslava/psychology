@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<ru.egslava.flag.ui.views.FitGridLayout android:id="@+id/grid" style="@style/Fit"-->
+    <!--xmlns:android="http://schemas.android.com/apk/res/android"/>-->
+<ru.egslava.flag.ui.views.FlagView
+    style="@style/Fit"
+    android:src="@drawable/classic_1"
+    xmlns:android="http://schemas.android.com/apk/res/android"/>
