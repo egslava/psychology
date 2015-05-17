@@ -19,8 +19,13 @@ import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.SystemService;
 import org.androidannotations.annotations.res.StringArrayRes;
 
+import java.util.ArrayList;
+
 import ru.egslava.flag.ui.PrefsActivity_;
+import ru.egslava.flag.ui.training.TrainingResultActivity_;
 import ru.egslava.flag.ui.userlist.UserListActivity_;
+import ru.egslava.flag.utils.Images;
+import ru.egslava.flag.utils.UniqueRandom;
 
 @EActivity
 public class MenuActivity extends ListActivity {
@@ -39,6 +44,14 @@ public class MenuActivity extends ListActivity {
         switch (position) {
             case 0:
                 UserListActivity_.intent(this).start();
+                break;
+            case 1:
+                UniqueRandom rnd = new UniqueRandom(0, 100);
+                ArrayList<Integer> list = new ArrayList<>();
+                for(int i=0; i< 11 ; i++){
+                    list.add(Images.imgs[rnd.next()]);
+                }
+                TrainingResultActivity_.intent(this).identified(list).userId(11).userName("test").start();
                 break;
             default:
                 PrefsActivity_.intent(this).start();
