@@ -8,9 +8,13 @@
 
     <string-array name="menu">
         <item>Вход</item>
+        <item>Продолжить</item>
         <item>Настройки</item>
         <item>Рекорды</item>
         <item>О программе</item>
     </string-array>
+    <string name="title_activity_training">Training</string>
+    <string name="title_activity_training_end">TrainingEndActivity</string>
+    <string name="title_activity_training_result">TrainingResultActivity</string>
 
 </resources>

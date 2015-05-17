@@ -26,6 +26,7 @@ import android.widget.Toast;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ItemClick;
 import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.OptionsMenuItem;
 import org.androidannotations.annotations.SystemService;
@@ -39,8 +40,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.TreeSet;
 
 import ru.egslava.flag.R;
+import ru.egslava.flag.ui.training.TrainingActivity_;
 
 /**
  * Created by egslava on 08/05/15.
@@ -85,4 +88,8 @@ public class UserListActivity extends ActionBarActivity {
     }
 
     @OptionsMenuItem MenuItem searchBar;
+
+    @ItemClick void list(int position){
+        TrainingActivity_.intent(this).round(0).identified(new TreeSet<Integer>()).start();
+    }
 }

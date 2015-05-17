@@ -11,23 +11,43 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <activity android:name=".ui.MenuActivity_" android:label="@string/app_name" >
+        <activity
+            android:name=".ui.MenuActivity_"
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".auth.AddNewUserActivity_" />
 
-        <service android:name=".auth.Service">
-            <intent-filter> <action android:name="android.accounts.AccountAuthenticator" /> </intent-filter>
-            <meta-data android:name="android.accounts.AccountAuthenticator" android:resource="@xml/authenticator" />
+        <service android:name=".auth.Service" >
+            <intent-filter>
+                <action android:name="android.accounts.AccountAuthenticator" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.accounts.AccountAuthenticator"
+                android:resource="@xml/authenticator" />
         </service>
 
         <activity android:name=".ui.PrefsActivity_" />
         <activity android:name=".ui.userlist.UserListActivity_" />
-
+        <activity
+            android:name=".ui.training.TrainingActivity_"
+            android:label="@string/title_activity_training"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".ui.training.TrainingEndActivity_"
+            android:label="@string/title_activity_training_end"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".ui.training.TrainingResultActivity_"
+            android:label="@string/title_activity_training_result" >
+        </activity>
     </application>
 
 </manifest>
