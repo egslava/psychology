@@ -37,7 +37,7 @@ public class FitGridLayout extends LinearLayout {
             linlay.setOrientation(HORIZONTAL);
 
             for (int col = 0; col < cols; col++){
-                final FlagView view = views[rows * row + col];
+                final FlagView view = views[row * cols + col];
                 view.setLayoutParams(new LinearLayout.LayoutParams(0, LayoutParams.MATCH_PARENT, 1));
                 linlay.addView(view);
 

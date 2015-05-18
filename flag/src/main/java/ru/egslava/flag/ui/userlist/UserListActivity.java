@@ -26,6 +26,7 @@ import android.widget.Toast;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.ItemClick;
 import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.OptionsMenuItem;
@@ -55,7 +56,7 @@ public class UserListActivity extends ActionBarActivity {
 
     @SystemService  AccountManager accountManager;
     @ViewById       ListView  list;
-
+    @Extra int mode;
     public SearchView searchView;
     public AccountsAdapter adapter;
 
@@ -90,6 +91,8 @@ public class UserListActivity extends ActionBarActivity {
     @OptionsMenuItem MenuItem searchBar;
 
     @ItemClick void list(int position){
-        TrainingActivity_.intent(this).round(0).identified(new TreeSet<Integer>()).start();
+        if(mode==0) {
+            TrainingActivity_.intent(this).identified(new ArrayList<>()).userName(adapter.getItem(position).name).start();
+        }
     }
 }

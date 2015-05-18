@@ -16,5 +16,6 @@
     <string name="title_activity_training">Training</string>
     <string name="title_activity_training_end">TrainingEndActivity</string>
     <string name="title_activity_training_result">TrainingResultActivity</string>
+    <string name="title_activity_experiment">ExperimentActivity</string>
 
 </resources>

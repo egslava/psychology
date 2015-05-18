@@ -51,7 +51,7 @@ public class MenuActivity extends ListActivity {
                 for(int i=0; i< 11 ; i++){
                     list.add(Images.imgs[rnd.next()]);
                 }
-                TrainingResultActivity_.intent(this).identified(list).userId(11).userName("test").start();
+                TrainingResultActivity_.intent(this).identified(list).userName("test").start();
                 break;
             default:
                 PrefsActivity_.intent(this).start();

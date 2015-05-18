@@ -23,37 +23,38 @@ import java.util.TreeSet;
 import ru.egslava.flag.Prefs_;
 import ru.egslava.flag.R;
 import ru.egslava.flag.ui.*;
+import ru.egslava.flag.ui.views.FitGridLayout;
 import ru.egslava.flag.utils.Images;
 import ru.egslava.flag.utils.UniqueRandom;
 
 @EActivity(R.layout.activity_training_end)
 public class TrainingEndActivity extends ActionBarActivity {
     @Pref Prefs_ prefs;
-    @ViewById GridView flagsSGV;
-    @Extra Integer[] oldFlags;
+    @ViewById
+    FitGridLayout flagsSGV;
+    @Extra int[] oldFlags;
     @Extra int round;
-    @Extra TreeSet<Integer> identified;
+    @Extra ArrayList<Integer> identified;
+    @Extra String userName;
 
-    Integer[] flags;
-    TreeSet<Integer> selected = new TreeSet<>();
+    int[] flags;
 
     @AfterViews void init() {
         loadFlags();
-        flagsSGV.setAdapter(new ImageAdapter(this, flags));
-        flagsSGV.setNumColumns(prefs.t2m().get());
+        flagsSGV.init(prefs.t2m().get(), prefs.t2n().get(), flags);
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                for(Integer element : selected){
-                    if(checkSelectedElement(flags[element])){
-                        identified.add(flags[element]);
+                for(Integer element : flagsSGV.getSelectedIds()){
+                    if(checkSelectedElement(element)){
+                        identified.add(element);
                     }
                 }
-                if(identified.size() > prefs.t2m().get() * prefs.t2n().get()){
-                    //TrainingResultActivity_.intent(TrainingEndActivity.this).identified(identified).round(round);
+                if(identified.size() > 1){//prefs.t2m().get() * prefs.t2n().get()
+                    TrainingResultActivity_.intent(TrainingEndActivity.this).identified(identified).userName(userName).start();
                 } else {
-                    TrainingActivity_.intent(TrainingEndActivity.this).round(round+1).identified(identified).start();
+                    TrainingActivity_.intent(TrainingEndActivity.this).identified(identified).userName(userName).start();
                 }
             }
         }, prefs.secs2().get()*1000);
@@ -70,19 +71,19 @@ public class TrainingEndActivity extends ActionBarActivity {
             list.add(Images.imgs[random.next()]);
         }
         Collections.shuffle(list);
-        flags = new Integer[size];
-        flags = list.toArray(flags);
+        Integer[] tmp = new Integer[size];
+        tmp = list.toArray(tmp);
+        flags = new int[size];
+        for(int i =0; i< size; i++){
+            flags[i] = tmp[i].intValue();
+        }
     }
 
     private boolean checkSelectedElement(Integer element){
         for(int i =0; i < oldFlags.length; i++){
-            if(oldFlags[i].equals(element)) return true;
+            if(oldFlags[i] == element.intValue()) return true;
         }
         return false;
-    }
-
-    @ItemClick void flagsSGV(int position){
-        selected.add(position);
     }
 
     @Override
