@@ -51,7 +51,7 @@ public class TrainingEndActivity extends ActionBarActivity {
                         identified.add(element);
                     }
                 }
-                if(identified.size() > 1){//prefs.t2m().get() * prefs.t2n().get()
+                if(identified.size() > prefs.t2m().get() * prefs.t2n().get()){//
                     TrainingResultActivity_.intent(TrainingEndActivity.this).identified(identified).userName(userName).start();
                 } else {
                     TrainingActivity_.intent(TrainingEndActivity.this).identified(identified).userName(userName).start();
@@ -71,11 +71,10 @@ public class TrainingEndActivity extends ActionBarActivity {
             list.add(Images.imgs[random.next()]);
         }
         Collections.shuffle(list);
-        Integer[] tmp = new Integer[size];
-        tmp = list.toArray(tmp);
+
         flags = new int[size];
         for(int i =0; i< size; i++){
-            flags[i] = tmp[i].intValue();
+            flags[i] = list.get(i);
         }
     }
 

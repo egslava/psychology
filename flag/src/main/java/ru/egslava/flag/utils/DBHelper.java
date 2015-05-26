@@ -22,6 +22,10 @@ public class DBHelper extends SQLiteOpenHelper {
                     + "userName text primary key,"
                     + "flagId integer,"
                     + "mark text" + ");");
+//            db.execSQL("create table marks ("
+//                    + "userName text primary key,"
+//                    + "flagId integer,"
+//                    + "mark text" + ");");
         } catch(Exception e){
             e.printStackTrace();
         }

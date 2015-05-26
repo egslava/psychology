@@ -14,24 +14,28 @@ import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.sharedpreferences.Pref;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import ru.egslava.flag.Prefs_;
 import ru.egslava.flag.R;
+import ru.egslava.flag.ui.training.TrainingActivity_;
+import ru.egslava.flag.ui.training.TrainingResultActivity_;
 import ru.egslava.flag.ui.views.FitGridLayout;
 import ru.egslava.flag.utils.DBHelper;
 import ru.egslava.flag.utils.Images;
 import ru.egslava.flag.utils.UniqueRandom;
-
 @EActivity(R.layout.activity_experiment)
-public class ExperimentActivity extends ActionBarActivity {
+public class ExperimentPart2Activity extends ActionBarActivity {
     @Extra
     String userName;
     @Extra
     int round;
+    @Extra
+    int[] oldFlags;
     @ViewById
-    FitGridLayout flagsExp;
+    FitGridLayout flagsExp2;
     @Pref
     Prefs_ prefs;
 
@@ -39,23 +43,27 @@ public class ExperimentActivity extends ActionBarActivity {
     private SQLiteDatabase db;
     private DBHelper dbHelper;
 
-    @AfterViews void init(){
+    @AfterViews
+    void init(){
         dbHelper = new DBHelper(this);
         db = dbHelper.getWritableDatabase();
         Cursor c = db.query("marks",null,"`userName`=?",new String[]{userName},null,null,null);
         ArrayList<Integer> allFlags = new ArrayList();
+        round++;
         while(c.moveToNext()){
             allFlags.add(c.getInt(1));
         }
         loadFlags(allFlags);
-        flagsExp.init(prefs.e1m().get(), prefs.e1n().get(), flags);
+        flagsExp2.init(prefs.e2m().get(), prefs.e2n().get(), flags);
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                ExperimentPart2Activity_.intent(ExperimentActivity.this).userName(userName).round(round).oldFlags(flags).start();
+                if(round < prefs.list5Imgs().get()){
+                    ExperimentActivity_.intent(ExperimentPart2Activity.this).round(round).userName(userName).start();
+                }
             }
-        }, prefs.secs1().get()*1000);
+        }, prefs.secs2().get()*1000);
     }
 
     @Override
@@ -64,12 +72,20 @@ public class ExperimentActivity extends ActionBarActivity {
         super.onStop();
     }
 
-    private void loadFlags(ArrayList<Integer> allFlags){
-        int size = prefs.e1m().get()*prefs.e1n().get();
+    private void loadFlags(ArrayList<Integer> allFlags) {
+        int size = prefs.e2m().get() * prefs.e2n().get();
+        ArrayList<Integer> list = new ArrayList();
+        for (int i = 0; i < oldFlags.length; i++) {
+            list.add(oldFlags[i]);
+        }
+        UniqueRandom random = new UniqueRandom(0, allFlags.size());
+        for (int i = oldFlags.length; i < size; i++) {
+            list.add(allFlags.get(random.next()));
+        }
+        Collections.shuffle(list);
         flags = new int[size];
-        UniqueRandom random = new UniqueRandom(0, size);
-        for(int i = 0; i< size; i++){
-            flags[i] = allFlags.get(random.next());
+        for (int i = 0; i < size; i++) {
+            flags[i] = list.get(i);
         }
     }
 }

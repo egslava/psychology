@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 import ru.egslava.flag.R;
 import ru.egslava.flag.ui.MenuActivity_;
+import ru.egslava.flag.ui.expirement.ExperimentActivity_;
 import ru.egslava.flag.utils.DBHelper;
 
 @EActivity(R.layout.activity_training_result)
@@ -74,7 +75,7 @@ public class TrainingResultActivity extends ActionBarActivity {
 
     @Click
     void expButton() {
-
+        ExperimentActivity_.intent(this).userName(userName).round(0).start();
     }
 
     @Click
