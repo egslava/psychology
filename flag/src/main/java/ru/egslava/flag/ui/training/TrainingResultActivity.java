@@ -45,7 +45,7 @@ public class TrainingResultActivity extends ActionBarActivity {
         db = dbHelper.getWritableDatabase();
         dbHelper.onCreate(db);
         expButton.setVisibility(View.INVISIBLE);
-        db.delete("marks", "userName="+userName, null);
+        db.delete("marks", "`userName`=?", new String[]{userName});
     }
 
     @Click

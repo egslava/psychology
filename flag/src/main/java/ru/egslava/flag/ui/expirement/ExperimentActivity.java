@@ -34,7 +34,7 @@ public class ExperimentActivity extends ActionBarActivity {
     @AfterViews void init(){
         dbHelper = new DBHelper(this);
         db = dbHelper.getWritableDatabase();
-        Cursor c = db.query("marks",null,"userName="+userName,null,null,null,null);
+        Cursor c = db.query("marks",null,"`userName`=?",new String[]{userName},null,null,null);
         //flagsExp.init(prefs.e1m(), prefs.e1n(), );
     }
 

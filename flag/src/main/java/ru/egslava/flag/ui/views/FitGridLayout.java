@@ -100,7 +100,7 @@ public class FitGridLayout extends LinearLayout {
         }
     }
 
-    class SavedState extends BaseSavedState {
+    static class SavedState extends BaseSavedState {
 
         Parcelable[] childrenStates;
 
@@ -115,7 +115,7 @@ public class FitGridLayout extends LinearLayout {
             dest.writeParcelableArray( childrenStates, 0 );
         }
 
-        public final Creator<SavedState> CREATOR = new Creator<SavedState>() {
+        public static final Creator<SavedState> CREATOR = new Creator<SavedState>() {
             @Override public SavedState createFromParcel(Parcel source) {
                 return new SavedState(source);
             }
