@@ -26,7 +26,7 @@ import ru.egslava.flag.ui.views.FitGridLayout;
 import ru.egslava.flag.utils.DBHelper;
 import ru.egslava.flag.utils.Images;
 import ru.egslava.flag.utils.UniqueRandom;
-@EActivity(R.layout.activity_experiment)
+@EActivity(R.layout.activity_experiment_part2)
 public class ExperimentPart2Activity extends ActionBarActivity {
     @Extra
     String userName;
@@ -34,8 +34,7 @@ public class ExperimentPart2Activity extends ActionBarActivity {
     int round;
     @Extra
     int[] oldFlags;
-    @ViewById
-    FitGridLayout flagsExp2;
+    @ViewById FitGridLayout flagsExp2;
     @Pref
     Prefs_ prefs;
 
@@ -60,7 +59,9 @@ public class ExperimentPart2Activity extends ActionBarActivity {
             @Override
             public void run() {
                 if(round < prefs.list5Imgs().get()){
-                    ExperimentActivity_.intent(ExperimentPart2Activity.this).round(round).userName(userName).start();
+                    ExperimentActivity_.intent(ExperimentPart2Activity.this).round(round+1).userName(userName).start();
+                } else {
+
                 }
             }
         }, prefs.secs2().get()*1000);

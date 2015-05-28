@@ -22,6 +22,6 @@ public class UniqueRandom {
         int r = rand.nextInt(data.size());
         int res = data.get(r);
         data.remove(r);
-        return data.get(res);
+        return res;
     }
 }

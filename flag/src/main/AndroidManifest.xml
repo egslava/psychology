@@ -66,6 +66,10 @@
             android:name=".ui.expirement.ExperimentPart2Activity_"
             android:label="@string/title_activity_experiment_part2" >
         </activity>
+        <activity
+            android:name=".ui.expirement.ExperimentResultActivity_"
+            android:label="@string/title_activity_experiment_result" >
+        </activity>
     </application>
 
 </manifest>

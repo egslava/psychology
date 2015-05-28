@@ -51,7 +51,7 @@ public class TrainingEndActivity extends ActionBarActivity {
                         identified.add(element);
                     }
                 }
-                if(identified.size() > prefs.t2m().get() * prefs.t2n().get()){//
+                if(identified.size() > prefs.e1m().get() * prefs.e1n().get()){//
                     TrainingResultActivity_.intent(TrainingEndActivity.this).identified(identified).userName(userName).start();
                 } else {
                     TrainingActivity_.intent(TrainingEndActivity.this).identified(identified).userName(userName).start();

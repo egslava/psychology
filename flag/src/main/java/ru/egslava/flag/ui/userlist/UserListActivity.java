@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -44,6 +45,7 @@ import java.util.Objects;
 import java.util.TreeSet;
 
 import ru.egslava.flag.R;
+import ru.egslava.flag.ui.expirement.ExperimentActivity_;
 import ru.egslava.flag.ui.training.TrainingActivity_;
 
 /**
@@ -56,6 +58,8 @@ public class UserListActivity extends ActionBarActivity {
 
     @SystemService  AccountManager accountManager;
     @ViewById       ListView  list;
+    @ViewById
+    Button add;
     @Extra int mode;
     public SearchView searchView;
     public AccountsAdapter adapter;
@@ -65,6 +69,7 @@ public class UserListActivity extends ActionBarActivity {
         adapter = new AccountsAdapter(this, accounts);
         list.setAdapter(adapter);
         list.setTextFilterEnabled(true);
+        if(mode==0) add.setVisibility(View.INVISIBLE);
     }
 
     @Click void add() { accountManager.addAccount(getPackageName(), null, null, null, this, null, null); }
@@ -93,6 +98,8 @@ public class UserListActivity extends ActionBarActivity {
     @ItemClick void list(int position){
         if(mode==0) {
             TrainingActivity_.intent(this).identified(new ArrayList<>()).userName(adapter.getItem(position).name).start();
+        } else {
+            ExperimentActivity_.intent(this).userName(adapter.getItem(position).name).round(0).start();
         }
     }
 }

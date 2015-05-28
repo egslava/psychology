@@ -95,7 +95,7 @@ public class TrainingResultActivity extends ActionBarActivity {
         }
         ContentValues cv = new ContentValues();
         cv.put("userName", userName);
-        cv.put("flagId", imageView.getId());
+        cv.put("flagId", identified.get(current) - 1);
         cv.put("mark", mark);
         db.insert("marks", null, cv);
     }

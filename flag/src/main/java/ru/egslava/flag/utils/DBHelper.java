@@ -19,7 +19,7 @@ public class DBHelper extends SQLiteOpenHelper {
         // создаем таблицу с полями
         try {
             db.execSQL("create table marks ("
-                    + "userName text primary key,"
+                    + "userName text,"
                     + "flagId integer,"
                     + "mark text" + ");");
 //            db.execSQL("create table marks ("

@@ -42,10 +42,10 @@ public class ExperimentActivity extends ActionBarActivity {
     @AfterViews void init(){
         dbHelper = new DBHelper(this);
         db = dbHelper.getWritableDatabase();
-        Cursor c = db.query("marks",null,"`userName`=?",new String[]{userName},null,null,null);
+        Cursor c = db.rawQuery("select flagId from marks where userName=?",new String[]{userName});
         ArrayList<Integer> allFlags = new ArrayList();
         while(c.moveToNext()){
-            allFlags.add(c.getInt(1));
+            allFlags.add(c.getInt(0));
         }
         loadFlags(allFlags);
         flagsExp.init(prefs.e1m().get(), prefs.e1n().get(), flags);
@@ -67,7 +67,7 @@ public class ExperimentActivity extends ActionBarActivity {
     private void loadFlags(ArrayList<Integer> allFlags){
         int size = prefs.e1m().get()*prefs.e1n().get();
         flags = new int[size];
-        UniqueRandom random = new UniqueRandom(0, size);
+        UniqueRandom random = new UniqueRandom(0, allFlags.size()-1);
         for(int i = 0; i< size; i++){
             flags[i] = allFlags.get(random.next());
         }
