@@ -40,5 +40,6 @@
         <TextView style="@style/FitWrap" android:text="Amount of images from first table aren't sent to second" android:layout_marginTop="@dimen/std_margin" />
         <EditText android:id="@+id/list5Imgs" style="@style/FitWrap" android:hint="Amount of images from first table aren't sent to second"/>
 
+        <Spinner android:id="@+id/img_folder" style="@style/FitWrap" />
     </LinearLayout>
 </ScrollView>

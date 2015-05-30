@@ -18,9 +18,12 @@ import org.androidannotations.annotations.ItemClick;
 import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.SystemService;
 import org.androidannotations.annotations.res.StringArrayRes;
+import org.androidannotations.annotations.sharedpreferences.Pref;
 
 import java.util.ArrayList;
 
+import ru.egslava.flag.Prefs;
+import ru.egslava.flag.Prefs_;
 import ru.egslava.flag.ui.PrefsActivity_;
 import ru.egslava.flag.ui.training.TrainingResultActivity_;
 import ru.egslava.flag.ui.userlist.UserListActivity_;
@@ -34,6 +37,7 @@ public class MenuActivity extends ListActivity {
     public                      ArrayAdapter<String>    adapter;
 
     @SystemService  AccountManager  accountManager;
+    @Pref           Prefs_          prefs;
 
     @AfterInject void init() {
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, menu);
@@ -49,7 +53,7 @@ public class MenuActivity extends ListActivity {
                 UniqueRandom rnd = new UniqueRandom(0, 100);
                 ArrayList<Integer> list = new ArrayList<>();
                 for(int i=0; i< 11 ; i++){
-                    list.add(Images.imgs[rnd.next()]);
+                    list.add(Images.imgs[rnd.next()][prefs.imgFolder().get()]);
                 }
                 TrainingResultActivity_.intent(this).identified(list).userName("test").start();
                 break;

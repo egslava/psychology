@@ -1,7 +1,10 @@
 package ru.egslava.flag.ui;
 
 import android.app.Activity;
+import android.util.Range;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import org.androidannotations.annotations.EActivity;
@@ -10,8 +13,11 @@ import org.androidannotations.annotations.sharedpreferences.Pref;
 import org.androidannotations.api.sharedpreferences.IntPrefEditorField;
 import org.androidannotations.api.sharedpreferences.IntPrefField;
 
+import java.util.Arrays;
+
 import ru.egslava.flag.Prefs_;
 import ru.egslava.flag.R;
+import ru.egslava.flag.utils.Images;
 
 /**
  * Created by egslava on 07/05/15.
@@ -23,9 +29,14 @@ public class PrefsActivity extends Activity {
     @Pref Prefs_ prefs;
 
     @ViewById   public EditText t1n, t1m, t2n, t2m, e1n, e1m, e2n, e2m, secs1, secs2, list5Imgs;
+    @ViewById   public Spinner  imgFolder;
+    public ArrayAdapter<int[]> adapter;
 
     @Override   protected void onResume() {
         super.onResume();
+
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, Arrays.asList(range(0, Images.imgs.length)));
+        imgFolder.setAdapter(adapter);
         load(t1n, prefs.t1n());
         load(t1m, prefs.t1m());
         load(t2n, prefs.t2n());
@@ -37,6 +48,7 @@ public class PrefsActivity extends Activity {
         load(secs1, prefs.secs1());
         load(secs2, prefs.secs2());
         load(list5Imgs, prefs.list5Imgs());
+        imgFolder.setSelection( prefs.imgFolder().get() );
     }
 
     @Override   protected void onPause() {
@@ -54,10 +66,20 @@ public class PrefsActivity extends Activity {
         save(secs1, e.secs1());
         save(secs2, e.secs2());
         save(list5Imgs, e.list5Imgs());
+        e.imgFolder().put( (int) imgFolder.getSelectedItem() );
+
         e.apply();
     }
 
     void save(TextView text, IntPrefEditorField i) { i.put(Integer.parseInt(text.getText().toString())); }
     void load(TextView text, IntPrefField i) { text.setText( String.valueOf( i.get( ) ) ); }
+
+    int[] range(int lower, int upper) {
+        int[] result = new int[upper - lower + 1];
+        for (int i = lower; i <= upper; i++) {
+            result[i - lower] = i;
+        }
+        return result;
+    }
 
 }

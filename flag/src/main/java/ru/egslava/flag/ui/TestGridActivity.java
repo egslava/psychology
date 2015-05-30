@@ -19,7 +19,7 @@ public class TestGridActivity extends Activity{
     @ViewById FitGridLayout grid;
 
     @AfterViews void init() {
-        grid.init(2, 2, Images.imgs[0], Images.imgs[1], Images.imgs[2], Images.imgs[3]);
+//        grid.init(2, 2, Images.imgs[0], Images.imgs[1], Images.imgs[2], Images.imgs[3]);
     }
 
 }

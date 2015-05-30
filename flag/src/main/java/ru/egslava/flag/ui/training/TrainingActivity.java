@@ -48,7 +48,7 @@ public class TrainingActivity extends Activity {
         flags = new int[size];
         UniqueRandom random = new UniqueRandom(0, Images.imgs.length);
         for(int i = 0; i< size; i++){
-            flags[i] = Images.imgs[random.next()];
+            flags[i] = Images.imgs[random.next()][prefs.imgFolder().get()];
         }
     }
 

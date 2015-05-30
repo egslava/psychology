@@ -25,4 +25,6 @@ public interface Prefs {
 
     // how much flags from first table aren't shown in the second one (and will be added to five seria)
     @DefaultInt(2) int list5Imgs();
+
+    @DefaultInt(0) int imgFolder();
 }
