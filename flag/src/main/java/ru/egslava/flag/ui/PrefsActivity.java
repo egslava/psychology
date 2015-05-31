@@ -30,12 +30,12 @@ public class PrefsActivity extends Activity {
 
     @ViewById   public EditText t1n, t1m, t2n, t2m, e1n, e1m, e2n, e2m, secs1, secs2, list5Imgs;
     @ViewById   public Spinner  imgFolder;
-    public ArrayAdapter<int[]> adapter;
+    public ArrayAdapter<Integer> adapter;
 
     @Override   protected void onResume() {
         super.onResume();
 
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, Arrays.asList(range(0, Images.imgs.length)));
+        adapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, range(0, Images.imgs.length));
         imgFolder.setAdapter(adapter);
         load(t1n, prefs.t1n());
         load(t1m, prefs.t1m());
@@ -74,8 +74,8 @@ public class PrefsActivity extends Activity {
     void save(TextView text, IntPrefEditorField i) { i.put(Integer.parseInt(text.getText().toString())); }
     void load(TextView text, IntPrefField i) { text.setText( String.valueOf( i.get( ) ) ); }
 
-    int[] range(int lower, int upper) {
-        int[] result = new int[upper - lower + 1];
+    Integer[] range(int lower, int upper) {
+        Integer[] result = new Integer[upper - lower + 1];
         for (int i = lower; i <= upper; i++) {
             result[i - lower] = i;
         }
