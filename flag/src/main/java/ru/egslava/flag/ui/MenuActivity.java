@@ -47,15 +47,10 @@ public class MenuActivity extends ListActivity {
     @ItemClick void list(int position) {
         switch (position) {
             case 0:
-                UserListActivity_.intent(this).start();
+                UserListActivity_.intent(this).mode(1).start();
                 break;
             case 1:
-                UniqueRandom rnd = new UniqueRandom(0, 100);
-                ArrayList<Integer> list = new ArrayList<>();
-                for(int i=0; i< 11 ; i++){
-                    list.add(Images.imgs[rnd.next()][prefs.imgFolder().get()]);
-                }
-                TrainingResultActivity_.intent(this).identified(list).userName("test").start();
+                UserListActivity_.intent(this).mode(0).start();
                 break;
             default:
                 PrefsActivity_.intent(this).start();

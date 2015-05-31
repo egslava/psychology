@@ -1,5 +1,6 @@
 package ru.egslava.flag.ui.expirement;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBarActivity;
@@ -41,27 +42,43 @@ public class ExperimentPart2Activity extends ActionBarActivity {
     int[] flags;
     private SQLiteDatabase db;
     private DBHelper dbHelper;
-
+    private ArrayList<Integer> allFlags;
     @AfterViews
     void init(){
         dbHelper = new DBHelper(this);
         db = dbHelper.getWritableDatabase();
         Cursor c = db.query("marks",null,"`userName`=?",new String[]{userName},null,null,null);
-        ArrayList<Integer> allFlags = new ArrayList();
+        allFlags = new ArrayList();
         round++;
         while(c.moveToNext()){
             allFlags.add(c.getInt(1));
         }
-        loadFlags(allFlags);
+        loadFlags();
         flagsExp2.init(prefs.e2m().get(), prefs.e2n().get(), flags);
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
                 if(round < prefs.list5Imgs().get()){
+                    saveResults();
                     ExperimentActivity_.intent(ExperimentPart2Activity.this).round(round+1).userName(userName).start();
                 } else {
-
+                    saveResults();
+                    Cursor c = db.query("flag_exp",null,"`userName`=?",new String[]{userName},null,null,null);
+                    ArrayList<Integer> expRsults = new ArrayList();
+                    while(c.moveToNext()){
+                        expRsults.add(c.getInt(1));
+                        for(Integer flag : allFlags){
+                            if(!isInList(expRsults,flag)){
+                                ContentValues cv = new ContentValues();
+                                cv.put("userName", userName);
+                                cv.put("flagId", flag);
+                                cv.put("state", 3);
+                                db.insert("flag_exp", null, cv);
+                            }
+                        }
+                    }
+                    ExperimentResultActivity_.intent(ExperimentPart2Activity.this).start();
                 }
             }
         }, prefs.secs2().get()*1000);
@@ -73,7 +90,7 @@ public class ExperimentPart2Activity extends ActionBarActivity {
         super.onStop();
     }
 
-    private void loadFlags(ArrayList<Integer> allFlags) {
+    private void loadFlags() {
         int size = prefs.e2m().get() * prefs.e2n().get();
         ArrayList<Integer> list = new ArrayList();
         for (int i = 0; i < oldFlags.length; i++) {
@@ -88,5 +105,27 @@ public class ExperimentPart2Activity extends ActionBarActivity {
         for (int i = 0; i < size; i++) {
             flags[i] = list.get(i);
         }
+    }
+
+    private void saveResults(){
+        ArrayList<Integer> list = flagsExp2.getSelectedIds();
+        for(int i = 0; i<flags.length; i++){
+            ContentValues cv = new ContentValues();
+            cv.put("userName", userName);
+            cv.put("flagId", flags[i]);
+            if(isInList(list, flags[i])){
+                cv.put("state", 0);
+            } else {
+                cv.put("state", 1);
+            }
+            db.insert("flag_exp", null, cv);
+        }
+    }
+
+    private boolean isInList(ArrayList<Integer> list, Integer val){
+        for(Integer flag : list){
+            if(flag.equals(val)) return true;
+        }
+        return false;
     }
 }

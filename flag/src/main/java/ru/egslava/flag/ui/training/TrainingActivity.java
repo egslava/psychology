@@ -1,7 +1,6 @@
 package ru.egslava.flag.ui.training;
 
 import android.app.Activity;
-import android.widget.GridView;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
@@ -12,12 +11,10 @@ import org.androidannotations.annotations.sharedpreferences.Pref;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.TreeSet;
 
 import ru.egslava.flag.Prefs_;
 import ru.egslava.flag.R;
 import ru.egslava.flag.ui.views.FitGridLayout;
-import ru.egslava.flag.ui.views.FlagView;
 import ru.egslava.flag.utils.Images;
 import ru.egslava.flag.utils.UniqueRandom;
 
@@ -46,9 +43,10 @@ public class TrainingActivity extends Activity {
     private void loadFlags(){
         int size = prefs.t1m().get()*prefs.t1n().get();
         flags = new int[size];
-        UniqueRandom random = new UniqueRandom(0, Images.imgs.length);
+        UniqueRandom random = new UniqueRandom(0, Images.imgs[0].length);
         for(int i = 0; i< size; i++){
-            flags[i] = Images.imgs[random.next()][prefs.imgFolder().get()];
+            //flags[i] = Images.imgs[random.next()][prefs.imgFolder().get()];
+            flags[i] = Images.imgs[0][random.next()];
         }
     }
 

@@ -51,7 +51,7 @@ public class TrainingEndActivity extends ActionBarActivity {
                         identified.add(element);
                     }
                 }
-                if(identified.size() > prefs.e1m().get() * prefs.e1n().get()){//
+                if(identified.size() > prefs.e1m().get() * prefs.e1n().get() * prefs.list5Imgs().get()){//
                     TrainingResultActivity_.intent(TrainingEndActivity.this).identified(identified).userName(userName).start();
                 } else {
                     TrainingActivity_.intent(TrainingEndActivity.this).identified(identified).userName(userName).start();
@@ -68,7 +68,8 @@ public class TrainingEndActivity extends ActionBarActivity {
         }
         UniqueRandom random = new UniqueRandom(0, Images.imgs.length);
         for(int i = oldFlags.length; i< size; i++){
-            list.add(Images.imgs[random.next()][prefs.imgFolder().get()]);
+            //list.add(Images.imgs[random.next()][prefs.imgFolder().get()]);
+            list.add(Images.imgs[0][random.next()]);
         }
         Collections.shuffle(list);
 

@@ -24,6 +24,8 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import net.i2p.android.ext.floatingactionbutton.AddFloatingActionButton;
+
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
@@ -59,7 +61,7 @@ public class UserListActivity extends ActionBarActivity {
     @SystemService  AccountManager accountManager;
     @ViewById       ListView  list;
     @ViewById
-    Button add;
+    AddFloatingActionButton add;
     @Extra int mode;
     public SearchView searchView;
     public AccountsAdapter adapter;
@@ -96,7 +98,7 @@ public class UserListActivity extends ActionBarActivity {
     @OptionsMenuItem MenuItem searchBar;
 
     @ItemClick void list(int position){
-        if(mode==0) {
+        if(mode==1) {
             TrainingActivity_.intent(this).identified(new ArrayList<>()).userName(adapter.getItem(position).name).start();
         } else {
             ExperimentActivity_.intent(this).userName(adapter.getItem(position).name).round(0).start();
