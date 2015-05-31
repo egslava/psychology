@@ -98,6 +98,10 @@ public class TrainingResultActivity extends ActionBarActivity {
         cv.put("flagId", identified.get(current) - 1);
         cv.put("mark", mark);
         db.insert("marks", null, cv);
+        ContentValues cv1 = new ContentValues();
+        cv1.put("userName", userName);
+        cv1.put("flagId", identified.get(current) - 1);
+        db.insert("train_result", null, cv1);
     }
 
     private void nextImage() {

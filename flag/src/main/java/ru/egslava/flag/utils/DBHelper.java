@@ -27,6 +27,10 @@ public class DBHelper extends SQLiteOpenHelper {
                     + "flagId integer,"
                     + "state text,"
                     + "round integer" + ");");
+            db.execSQL("create table train_result ("
+                    + "userName text ,"
+                    + "flagId integer);");
+
         } catch(Exception e){
             e.printStackTrace();
         }
