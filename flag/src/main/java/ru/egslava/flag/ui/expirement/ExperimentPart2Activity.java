@@ -73,7 +73,8 @@ public class ExperimentPart2Activity extends ActionBarActivity {
                                 ContentValues cv = new ContentValues();
                                 cv.put("userName", userName);
                                 cv.put("flagId", flag);
-                                cv.put("state", 3);
+                                cv.put("state", 2);
+                                cv.put("round",round);
                                 db.insert("flag_exp", null, cv);
                             }
                         }
@@ -109,11 +110,13 @@ public class ExperimentPart2Activity extends ActionBarActivity {
 
     private void saveResults(){
         ArrayList<Integer> list = flagsExp2.getSelectedIds();
-        for(int i = 0; i<flags.length; i++){
+        ArrayList<Integer> old = castToIntegerList(oldFlags);
+        for(Integer flag : list){
             ContentValues cv = new ContentValues();
             cv.put("userName", userName);
-            cv.put("flagId", flags[i]);
-            if(isInList(list, flags[i])){
+            cv.put("flagId", flag);
+            cv.put("round",round);
+            if(isInList(old, flag)){
                 cv.put("state", 0);
             } else {
                 cv.put("state", 1);
@@ -127,5 +130,13 @@ public class ExperimentPart2Activity extends ActionBarActivity {
             if(flag.equals(val)) return true;
         }
         return false;
+    }
+
+    private ArrayList<Integer> castToIntegerList(int[] a){
+        ArrayList<Integer> list = new ArrayList<>();
+        for(int i=0; i<a.length;i++){
+            list.add(a[i]);
+        }
+        return list;
     }
 }

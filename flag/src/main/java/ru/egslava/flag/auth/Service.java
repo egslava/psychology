@@ -1,6 +1,8 @@
 package ru.egslava.flag.auth;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
+import android.os.Build;
 import android.os.IBinder;
 
 /**
