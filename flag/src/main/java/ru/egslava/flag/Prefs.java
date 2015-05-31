@@ -23,6 +23,7 @@ public interface Prefs {
     @DefaultInt(3) int secs1();     // time for first table
     @DefaultInt(7) int secs2();     // time for second table
 
+    @DefaultInt(7) int control_mode();     // time for second table
     // how much flags from first table aren't shown in the second one (and will be added to five seria)
     @DefaultInt(2) int list5Imgs();
 
