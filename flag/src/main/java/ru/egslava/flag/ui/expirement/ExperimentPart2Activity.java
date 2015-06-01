@@ -47,7 +47,7 @@ public class ExperimentPart2Activity extends ActionBarActivity {
     void init(){
         dbHelper = new DBHelper(this);
         db = dbHelper.getWritableDatabase();
-        Cursor c = db.query("marks",null,"`userName`=?",new String[]{userName},null,null,null);
+        Cursor c = db.query("train_result",null,"`userName`=?",new String[]{userName},null,null,null);
         allFlags = new ArrayList();
         round++;
         while(c.moveToNext()){
@@ -59,21 +59,21 @@ public class ExperimentPart2Activity extends ActionBarActivity {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                if(round < prefs.list5Imgs().get()){
-                    saveResults();
-                    ExperimentActivity_.intent(ExperimentPart2Activity.this).round(round+1).userName(userName).start();
+                saveResults();
+                if (round < prefs.list5Imgs().get()) {
+                    ExperimentActivity_.intent(ExperimentPart2Activity.this).round(round + 1).userName(userName).start();
                 } else {
-                    saveResults();
-                    Cursor c = db.query("flag_exp",null,"`userName`=?",new String[]{userName},null,null,null);
+                    Cursor c = db.query("flag_exp", null, "`userName`=?", new String[]{userName}, null, null, null);
                     ArrayList<Integer> expRsults = new ArrayList();
-                    while(c.moveToNext()){
+                    while (c.moveToNext()) {
                         expRsults.add(c.getInt(1));
-                        for(Integer flag : allFlags){
-                            if(!isInList(expRsults,flag)){
+                        for (Integer flag : allFlags) {
+                            if (!isInList(expRsults, flag)) {
                                 ContentValues cv = new ContentValues();
                                 cv.put("userName", userName);
                                 cv.put("flagId", flag);
-                                cv.put("state", 3);
+                                cv.put("state", 2);
+                                cv.put("round", round);
                                 db.insert("flag_exp", null, cv);
                             }
                         }
@@ -81,7 +81,7 @@ public class ExperimentPart2Activity extends ActionBarActivity {
                     ExperimentResultActivity_.intent(ExperimentPart2Activity.this).start();
                 }
             }
-        }, prefs.secs2().get()*1000);
+        }, prefs.secs2().get() * 1000);
     }
 
     @Override
@@ -93,12 +93,21 @@ public class ExperimentPart2Activity extends ActionBarActivity {
     private void loadFlags() {
         int size = prefs.e2m().get() * prefs.e2n().get();
         ArrayList<Integer> list = new ArrayList();
-        for (int i = 0; i < oldFlags.length; i++) {
+        for (int i = 0; i < oldFlags.length - prefs.list5Imgs().get(); i++) {
             list.add(oldFlags[i]);
         }
+        for(int i = oldFlags.length - prefs.list5Imgs().get(); i < oldFlags.length; i++) {
+            ContentValues cv = new ContentValues();
+            cv.put("userName", userName);
+            cv.put("flagId", oldFlags[i]);
+            cv.put("round",round);
+            cv.put("state", 2);
+            db.insert("flag_exp", null, cv);
+        }
         UniqueRandom random = new UniqueRandom(0, allFlags.size());
-        for (int i = oldFlags.length; i < size; i++) {
+        for (int i = oldFlags.length - prefs.list5Imgs().get(); i < size; i++) {
             list.add(allFlags.get(random.next()));
+            db.rawQuery("delete from train_result where flagId=?", new String[]{"" + flags[i]});
         }
         Collections.shuffle(list);
         flags = new int[size];
@@ -109,16 +118,38 @@ public class ExperimentPart2Activity extends ActionBarActivity {
 
     private void saveResults(){
         ArrayList<Integer> list = flagsExp2.getSelectedIds();
-        for(int i = 0; i<flags.length; i++){
+        ArrayList<Integer> old = castToIntegerList(oldFlags);
+        for(Integer flag : list){
             ContentValues cv = new ContentValues();
             cv.put("userName", userName);
-            cv.put("flagId", flags[i]);
-            if(isInList(list, flags[i])){
+            cv.put("flagId", flag);
+            cv.put("round",round);
+            if(isInList(old, flag)){
                 cv.put("state", 0);
             } else {
-                cv.put("state", 1);
+                cv.put("state", 4);
             }
             db.insert("flag_exp", null, cv);
+        }
+        for(int i = 0; i < oldFlags.length - prefs.list5Imgs().get(); i++){
+            if(!isInList(list, oldFlags[i])){
+                ContentValues cv = new ContentValues();
+                cv.put("userName", userName);
+                cv.put("flagId", oldFlags[i]);
+                cv.put("round",round);
+                cv.put("state", 1);
+                db.insert("flag_exp", null, cv);
+            }
+        }
+        for(int i=0;i<flags.length;i++){
+            if(!isInList(old, flags[i]) && !isInList(list, flags[i])){
+                ContentValues cv = new ContentValues();
+                cv.put("userName", userName);
+                cv.put("flagId", oldFlags[i]);
+                cv.put("round",round);
+                cv.put("state", 3);
+                db.insert("flag_exp", null, cv);
+            }
         }
     }
 
@@ -127,5 +158,13 @@ public class ExperimentPart2Activity extends ActionBarActivity {
             if(flag.equals(val)) return true;
         }
         return false;
+    }
+
+    private ArrayList<Integer> castToIntegerList(int[] a){
+        ArrayList<Integer> list = new ArrayList<>();
+        for(int i=0; i<a.length;i++){
+            list.add(a[i]);
+        }
+        return list;
     }
 }

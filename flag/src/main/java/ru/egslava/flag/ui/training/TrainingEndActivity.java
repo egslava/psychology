@@ -66,10 +66,10 @@ public class TrainingEndActivity extends ActionBarActivity {
         for(int i = 0; i< oldFlags.length; i++){
             list.add(oldFlags[i]);
         }
-        UniqueRandom random = new UniqueRandom(0, Images.imgs.length);
+        UniqueRandom random = new UniqueRandom(0, Images.imgs[prefs.imgFolder().get()].length);
         for(int i = oldFlags.length; i< size; i++){
             //list.add(Images.imgs[random.next()][prefs.imgFolder().get()]);
-            list.add(Images.imgs[0][random.next()]);
+            list.add(Images.imgs[prefs.imgFolder().get()][random.next()]);
         }
         Collections.shuffle(list);
 

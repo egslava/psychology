@@ -42,7 +42,7 @@ public class ExperimentActivity extends ActionBarActivity {
     @AfterViews void init(){
         dbHelper = new DBHelper(this);
         db = dbHelper.getWritableDatabase();
-        Cursor c = db.rawQuery("select flagId from marks where userName=?",new String[]{userName});
+        Cursor c = db.rawQuery("select flagId from train_result where userName=?",new String[]{userName});
         ArrayList<Integer> allFlags = new ArrayList();
         while(c.moveToNext()){
             allFlags.add(c.getInt(0));
@@ -70,6 +70,7 @@ public class ExperimentActivity extends ActionBarActivity {
         UniqueRandom random = new UniqueRandom(0, allFlags.size()-1);
         for(int i = 0; i< size; i++){
             flags[i] = allFlags.get(random.next());
+            db.rawQuery("delete from train_result where flagId=?",new String[]{""+flags[i]});
         }
     }
 }
