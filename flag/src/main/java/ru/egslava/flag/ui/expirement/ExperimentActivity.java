@@ -26,14 +26,11 @@ import ru.egslava.flag.utils.UniqueRandom;
 
 @EActivity(R.layout.activity_experiment)
 public class ExperimentActivity extends ActionBarActivity {
-    @Extra
-    String userName;
-    @Extra
-    int round;
-    @ViewById
-    FitGridLayout flagsExp;
-    @Pref
-    Prefs_ prefs;
+    @Extra  String userName;
+    @Extra  int round;
+    @ViewById   FitGridLayout flagsExp;
+
+    @Pref   Prefs_ prefs;
 
     int[] flags;
     private SQLiteDatabase db;

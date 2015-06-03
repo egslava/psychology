@@ -1,6 +1,7 @@
 ./app/src/main/res/values/strings_map.xml
 
-app/app.iml
+gradle
+*.iml
 java_pid*
 gradle.properties
 crashlytics-build.properties
