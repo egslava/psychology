@@ -17,27 +17,25 @@ import ru.egslava.flag.R;
 import ru.egslava.flag.ui.views.FitGridLayout;
 import ru.egslava.flag.utils.Images;
 import ru.egslava.flag.utils.UniqueRandom;
+import ru.egslava.flag.utils.Utils;
+
+import static ru.egslava.flag.utils.Utils.after;
 
 @EActivity(R.layout.activity_training)
 public class TrainingActivity extends Activity {
     @Pref Prefs_ prefs;
-    @ViewById
-    FitGridLayout flagsGV;
-    @Extra
-    ArrayList<Integer> identified;
-    @Extra String userName;
+    @ViewById   FitGridLayout flagsGV;
+    @Extra      ArrayList<Integer> identified;
+    @Extra      String userName;
 
     int[] flags;
     @AfterViews  void init() {
         loadFlags();
         flagsGV.init(prefs.t1m().get(), prefs.t1n().get(), flags);
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                TrainingEndActivity_.intent(TrainingActivity.this).identified(identified).userName(userName).oldFlags(flags).start();
-            }
-        }, prefs.secs1().get()*1000);
+
+        after(prefs.secs1().get() * 1000, () -> {
+            TrainingEndActivity_.intent(TrainingActivity.this).identified(identified).userName(userName).oldFlags(flags).start();
+        });
     }
 
     private void loadFlags(){
@@ -50,7 +48,5 @@ public class TrainingActivity extends Activity {
         }
     }
 
-    @Override
-    public void onBackPressed() {
-    }
+    @Override public void onBackPressed() {}
 }

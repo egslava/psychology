@@ -81,7 +81,7 @@ public class FlagView extends ImageView implements Checkable, View.OnClickListen
     }
 
 
-    class FlagParcellable extends BaseSavedState {
+    public class FlagParcellable extends BaseSavedState {
         public boolean isChecked;
         public FlagParcellable(Parcel source) {
             super(source);

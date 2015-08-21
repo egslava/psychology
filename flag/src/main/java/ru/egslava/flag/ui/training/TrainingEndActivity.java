@@ -11,6 +11,7 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.ItemClick;
+import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.sharedpreferences.Pref;
 
@@ -19,6 +20,7 @@ import java.util.Collections;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.TreeSet;
+import java.util.logging.Handler;
 
 import ru.egslava.flag.Prefs_;
 import ru.egslava.flag.R;
@@ -26,12 +28,14 @@ import ru.egslava.flag.ui.*;
 import ru.egslava.flag.ui.views.FitGridLayout;
 import ru.egslava.flag.utils.Images;
 import ru.egslava.flag.utils.UniqueRandom;
+import ru.egslava.flag.utils.Utils;
+
+import static ru.egslava.flag.utils.Utils.after;
 
 @EActivity(R.layout.activity_training_end)
 public class TrainingEndActivity extends ActionBarActivity {
     @Pref Prefs_ prefs;
-    @ViewById
-    FitGridLayout flagsSGV;
+    @ViewById   FitGridLayout flagsSGV;
     @Extra int[] oldFlags;
     @Extra int round;
     @Extra ArrayList<Integer> identified;
@@ -42,22 +46,19 @@ public class TrainingEndActivity extends ActionBarActivity {
     @AfterViews void init() {
         loadFlags();
         flagsSGV.init(prefs.t2m().get(), prefs.t2n().get(), flags);
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                for(Integer element : flagsSGV.getSelectedIds()){
-                    if(checkSelectedElement(element)){
-                        identified.add(element);
-                    }
-                }
-                if(identified.size() > prefs.e1m().get() * prefs.e1n().get() * prefs.list5Imgs().get()){//
-                    TrainingResultActivity_.intent(TrainingEndActivity.this).identified(identified).userName(userName).start();
-                } else {
-                    TrainingActivity_.intent(TrainingEndActivity.this).identified(identified).userName(userName).start();
+
+        after( prefs.secs2().get() * 1000, () -> {
+            for(Integer element : flagsSGV.getSelectedIds()){
+                if(checkSelectedElement(element)){
+                    identified.add(element);
                 }
             }
-        }, prefs.secs2().get()*1000);
+            if(identified.size() > prefs.e1m().get() * prefs.e1n().get() * prefs.list5Imgs().get()){//
+                TrainingResultActivity_.intent(this).identified(identified).userName(userName).start();
+            } else {
+                TrainingActivity_.intent(this).identified(identified).userName(userName).start();
+            }
+        });
     }
 
     private void loadFlags(){
@@ -81,12 +82,10 @@ public class TrainingEndActivity extends ActionBarActivity {
 
     private boolean checkSelectedElement(Integer element){
         for(int i =0; i < oldFlags.length; i++){
-            if(oldFlags[i] == element.intValue()) return true;
+            if(oldFlags[i] == element) return true;
         }
         return false;
     }
 
-    @Override
-    public void onBackPressed() {
-    }
+    @Override public void onBackPressed() {}
 }

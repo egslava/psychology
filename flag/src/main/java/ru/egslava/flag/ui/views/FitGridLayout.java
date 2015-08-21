@@ -100,7 +100,7 @@ public class FitGridLayout extends LinearLayout {
         }
     }
 
-    static class SavedState extends BaseSavedState {
+    public static class SavedState extends BaseSavedState {
 
         Parcelable[] childrenStates;
 
