@@ -23,6 +23,8 @@ public class FitGridLayout extends LinearLayout {
     public FitGridLayout(Context context) { super(context); }
     public FitGridLayout(Context context, AttributeSet attrs) { super(context, attrs); }
 
+
+
     ArrayList<FlagView> flagViews = new ArrayList<>();
 
     public void init (int rows, int cols, FlagView... views){

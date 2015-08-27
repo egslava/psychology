@@ -15,6 +15,8 @@ public class FlagExp {
     @DatabaseField public String  userName;
     @DatabaseField public int     flagId, round, state;
 
+    public FlagExp(){}
+
     public FlagExp(String userName, int flagId, int round, int state) {
         this.userName = userName;
         this.flagId = flagId;

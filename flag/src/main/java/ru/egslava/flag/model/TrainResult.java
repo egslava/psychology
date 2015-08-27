@@ -17,6 +17,8 @@ public class TrainResult {
     @DatabaseField                          public int         flagId;
     @DatabaseField(generatedId = true)      public int          id;
 
+    public TrainResult() {}
+
     public TrainResult(String userName, int flagId) {
         this.userName = userName;
         this.flagId = flagId;

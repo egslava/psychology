@@ -15,6 +15,8 @@ public class Mark {
     @DatabaseField public String  userName;
     @DatabaseField public int     flagId, mark;
 
+    public Mark(){}
+
     public Mark(String userName, int flagId, int mark) {
         this.userName = userName;
         this.flagId = flagId;

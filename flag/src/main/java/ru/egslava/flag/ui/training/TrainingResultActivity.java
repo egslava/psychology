@@ -29,6 +29,8 @@ import ru.egslava.flag.ui.expirement.ExperimentActivity_;
 import ru.egslava.flag.utils.DBHelper;
 import ru.egslava.flag.utils.Utils;
 
+import static ru.egslava.flag.utils.Utils.*;
+
 @EActivity(R.layout.activity_training_result)
 public class TrainingResultActivity extends ActionBarActivity {
     @Extra          ArrayList<Integer> identified;
@@ -58,11 +60,7 @@ public class TrainingResultActivity extends ActionBarActivity {
         expButton.setVisibility(View.INVISIBLE);
 
 //        db.delete("marks", "`userName`=?", new String[]{userName});
-        try {
-            marksDao.deleteBuilder().where().eq(MarkContract.USERNAME, userName);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        unsafe( () -> marksDao.deleteBuilder().where().eq(MarkContract.USERNAME, userName) );
     }
 
     @Click void mark1() {
@@ -95,13 +93,13 @@ public class TrainingResultActivity extends ActionBarActivity {
 //        super.onStop();
 //    }
 
-    private void saveMark(int mark) { Utils.unsafe( () -> {
+    private void saveMark(int mark) { unsafe(() -> {
         if (current >= max) {
             return;
         }
 
         marksDao.create(new Mark(userName, identified.get(current) - 1, mark));
-        trainsDao.create( new TrainResult(userName, identified.get(current) - 1) );
+        trainsDao.create(new TrainResult(userName, identified.get(current) - 1));
 //        ContentValues cv = new ContentValues();
 //        cv.put("userName", userName);
 //        cv.put("flagId", identified.get(current) - 1);
